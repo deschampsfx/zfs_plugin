@@ -1,6 +1,6 @@
 Menu="CA"
 Title="Cleanup Appdata"
-Icon="cleanup.png"
+Icon="ca.cleanup.appdata.png"
 ---
 <?
 $dockerRunning = is_dir("/var/lib/docker/tmp") ? "true" : "false";
