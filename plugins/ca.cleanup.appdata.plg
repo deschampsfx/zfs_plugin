@@ -3,7 +3,7 @@
 <!ENTITY name      "ca.cleanup.appdata">
 <!ENTITY author    "Andrew Zawadzki">
 <!ENTITY version   "2016.11.06">
-<!ENTITY md5       "c7bd6968d6e7621406db9a081a08fe32">
+<!ENTITY md5       "9848a7034ce62fd035d11909c6756f43">
 <!ENTITY launch    "Settings/CleanUpAppdata">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/ca.cleanup.appdata">

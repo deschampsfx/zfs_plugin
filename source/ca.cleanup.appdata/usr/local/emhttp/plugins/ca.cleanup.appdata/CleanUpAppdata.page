@@ -3,12 +3,28 @@ Title="Cleanup Appdata"
 Icon="ca.cleanup.appdata.png"
 ---
 <?
+require_once("/usr/local/emhttp/plugins/ca.cleanup.appdata/include/caCredits.php");
+
+$plugin = "ca.cleanup.appdata";
 $dockerRunning = is_dir("/var/lib/docker/tmp") ? "true" : "false";
+
+$installedVersion = exec("/usr/local/emhttp/plugins/dynamix.plugin.manager/scripts/plugin version /var/log/plugins/ca.cleanup.appdata.plg");
+if ( is_file("/tmp/plugins/ca.cleanup.appdata.plg") ) {
+  $upgradeVersion = exec("/usr/local/emhttp/plugins/dynamix.plugin.manager/scripts/plugin version /tmp/plugins/ca.cleanup.appdata.plg");
+} else {
+  $upgradeVersion = "0";
+}
+if ( $installedVersion < $upgradeVersion ) {
+  $upgradeAvailable = "true";
+}
 ?>
 <script>
 var URL = "/plugins/ca.cleanup.appdata/include/exec.php";
 
 $(function() {
+  if ( "<?=$upgradeAvailable?>" == "true" ) {
+    $("#upgradeAvailable").show();
+  }
   if ( "<?=$dockerRunning?>" == "false" ) {
     swal({
       title: "Docker Not Running",
@@ -18,6 +34,28 @@ $(function() {
   }
   loadAppdata();
 });
+
+function showCredits() {
+  myAlert("CA Cleanup Appdata","<?=$caCredits?>","/plugins/<?=$plugin?>/images/ca.cleanup.appdata.png","96x96", true, false, true);
+}
+
+function myAlert(description,textdescription,textimage,imagesize, outsideClick, showCancel, showConfirm, alertType) {
+  if ( !outsideClick ) outsideClick = false;
+  if ( !showCancel )   showCancel = false;
+  if ( !showConfirm )  showConfirm = false;
+  if ( imagesize == "" ) { imagesize = "80x80"; }
+  swal({
+    title: description,
+    text: textdescription,
+    imageUrl: textimage,
+    imageSize: imagesize,
+    allowOutsideClick: outsideClick,
+    showConfirmButton: showConfirm,
+    showCancelButton: showCancel,
+    type: alertType,
+    html: true
+  });
+}
 
 function loadAppdata() {
   $("#settings").html("<img src='/plugins/ca.cleanup.appdata/images/spinner2.gif' width='48px'> Finding orphaned appdata");
@@ -70,7 +108,8 @@ function deleteAppdata() {
   
 }
 </script>
-
+<span id='upgradeAvailable' hidden><center> <font color='red'>An update to CA Cleanup Appdata is Available. Click <a href='/Plugins'>HERE</a> to install the update</center></font></span>
+<br>
 The following appdata paths have been determined (based upon your previously installed applications) to be no longer in use.  Select which ones you would like to be deleted<br><br>
 Note that this module looks at all of your previously installed docker applications to determine which appdata folders are abandoned.  If you have deleted the previously installed list (either through Community Applications or manually), then it will not display those result.  IE:  If there is not a record for the folder within the previously installed apps, then you will not be prompted to delete the folder.<br><br>
 
@@ -79,5 +118,7 @@ Note that this module looks at all of your previously installed docker applicati
 
 <input type='button' id='deleteButton' onclick='deleteAppdata();' value='Delete Selected' disabled><input type='button' onclick='done();' value='Done'>
 
+<a href="Settings/caHelp" target='_blank'>CA Manual</a><a style='float:right;cursor:pointer' onclick='showCredits();'>Credits</a><br><br></span>
 <center>For support for this plugin, visit here: <a href="http://lime-technology.com/forum/index.php?topic=40262.0" target="_blank">http://lime-technology.com/forum/index.php?topic=40262.0</a></center>
+<center>Plugin Version: <strong><?=$installedVersion?></strong></center>
 > <center><a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7M7CBCVU732XG' target='_blank'><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a></center>
