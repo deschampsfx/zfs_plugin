@@ -108,7 +108,7 @@ function deleteAppdata() {
   
 }
 </script>
-<span id='upgradeAvailable' hidden><center> <font color='red'>An update to CA Cleanup Appdata is Available. Click <a href='/Plugins'>HERE</a> to install the update</center></font></span>
+<div id='upgradeAvailable' style='display:none'><center> <font color='red'>An update to CA Cleanup Appdata is Available. Click <a href='/Plugins'>HERE</a> to install the update</center></font></div>
 <br>
 The following appdata paths have been determined (based upon your previously installed applications) to be no longer in use.  Select which ones you would like to be deleted<br><br>
 Note that this module looks at all of your previously installed docker applications to determine which appdata folders are abandoned.  If you have deleted the previously installed list (either through Community Applications or manually), then it will not display those result.  IE:  If there is not a record for the folder within the previously installed apps, then you will not be prompted to delete the folder.<br><br>
