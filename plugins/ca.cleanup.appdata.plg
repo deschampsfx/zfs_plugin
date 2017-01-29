@@ -14,7 +14,7 @@
 
 <CHANGES>
 ###2017.01.28
-- Fixed: Errors when docker no installed templates have any possibilities for cleanup
+- Fixed: Errors when no templates have any possibilities for cleanup
 
 ###2016.11.11
 - Initial Release
