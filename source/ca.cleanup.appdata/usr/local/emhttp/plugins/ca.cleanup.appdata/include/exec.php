@@ -37,7 +37,7 @@ case 'getOrphanAppdata':
   }
 
   # Get the list of appdata folders used by all of the my* templates
-  
+  $availableVolumes = array();
   foreach ($all_files as $xmlfile) {
     if ( pathinfo($xmlfile,PATHINFO_EXTENSION) == "xml" ) {
       $o = XML2Array::createArray(file_get_contents("/boot/config/plugins/dockerMan/templates-user/$xmlfile"));
