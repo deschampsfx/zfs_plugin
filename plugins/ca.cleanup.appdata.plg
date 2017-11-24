@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "ca.cleanup.appdata">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2017.01.28">
-<!ENTITY md5       "733352669df46e77dde4d5cdddade4e9">
+<!ENTITY version   "2017.11.23">
+<!ENTITY md5       "06df7b5812e95d09d7320638116f24e4">
 <!ENTITY launch    "Settings/CleanUpAppdata">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/ca.cleanup.appdata">
@@ -13,6 +13,10 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;">
 
 <CHANGES>
+###2017.11.23
+- Reorganization as part of updates to CA proper
+- Relocate Icon to Settings / User Utilities
+
 ###2017.01.28
 - Fixed: Errors when no templates have any possibilities for cleanup
 
@@ -66,6 +70,8 @@ The 'post-install' script
 -->
 <FILE Run="/bin/bash">
 <INLINE>
+rm -rf /usr/local/emhttp/plugins/ca.cleanup.appdata/CA.page
+rm -rf /usr/local/emhttp/plugins/ca.cleanup.appdata/caHelp.page
 echo ""
 echo "----------------------------------------------------"
 echo " &name; has been installed."
