@@ -28,7 +28,7 @@ switch ($_POST['action']) {
 #########################################
 
 case 'getOrphanAppdata':
-  $all_files = dirContents("/boot/config/plugins/dockerMan/templates-user");
+  $all_files = glob("/boot/config/plugins/dockerMan/templates-user/*.xml");
   if ( is_dir("/var/lib/docker/tmp") ) {
     $DockerClient = new DockerClient();
     $info = $DockerClient->getDockerContainers();
@@ -39,28 +39,27 @@ case 'getOrphanAppdata':
   # Get the list of appdata folders used by all of the my* templates
   $availableVolumes = array();
   foreach ($all_files as $xmlfile) {
-    if ( pathinfo($xmlfile,PATHINFO_EXTENSION) == "xml" ) {
-      $o = XML2Array::createArray(file_get_contents("/boot/config/plugins/dockerMan/templates-user/$xmlfile"));
-      reset($o);
-      $first_key = key($o);
-      $o = $o[$first_key]; # get the name of the first key (root of the xml)
-      if ( isset($o['Data']['Volume']) ) {
-        if ( $o['Data']['Volume'][0] ) {
-          $volumes = $o['Data']['Volume'];
-        } else {
-          unset($volumes);
-          $volumes[] = $o['Data']['Volume'];
-        }
-        foreach ( $volumes as $volumeArray ) {
-          $volumeList[0] = $volumeArray['HostDir'].":".$volumeArray['ContainerDir'];
-          if ( findAppdata($volumeList) ) {
-            $temp['Name'] = $o['Name'];
-            $temp['HostDir'] = $volumeArray['HostDir'];
-            $availableVolumes[$volumeArray['HostDir']] = $temp;
-          }
-        }
-      } 
-    }
+		$o = XML2Array::createArray(file_get_contents("$xmlfile"));
+		reset($o);
+		$first_key = key($o);
+		$o = $o[$first_key]; # get the name of the first key (root of the xml)
+		if ( isset($o['Data']['Volume']) ) {
+			if ( $o['Data']['Volume'][0] ) {
+				$volumes = $o['Data']['Volume'];
+			} else {
+				unset($volumes);
+				$volumes[] = $o['Data']['Volume'];
+			}
+			foreach ( $volumes as $volumeArray ) {
+				$volumeList[0] = $volumeArray['HostDir'].":".$volumeArray['ContainerDir'];
+				if ( findAppdata($volumeList) ) {
+					$temp['Name'] = $o['Name'];
+					$temp['HostDir'] = $volumeArray['HostDir'];
+					$availableVolumes[$volumeArray['HostDir']] = $temp;
+				}
+			}
+		} 
+    
   }
 
   # remove from the list the folders used by installed docker apps
