@@ -86,6 +86,9 @@ case 'getOrphanAppdata':
     if ( ! is_dir($userFolder) ) {
       unset($temp[$volume['HostDir']]);
     }
+		if ( $userFolder == "/" || $userFolder == "/mnt/" || $userFolder == "/mnt/user/" ) {
+			unset($temp[$volume['HostDir']]);
+		}
   }
   $availableVolumes = $temp;
 

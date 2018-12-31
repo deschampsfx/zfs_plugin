@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "ca.cleanup.appdata">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2018.10.19">
-<!ENTITY md5       "1ed5e42a6f253235cf20396075822d98">
+<!ENTITY version   "2018.12.31">
+<!ENTITY md5       "7e37413f4497a3b5414b8f6408c88033">
 <!ENTITY launch    "Settings/CleanUpAppdata">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/ca.cleanup.appdata">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;">
 
 <CHANGES>
+###2018.12.31
+- Add in some checks for when user had a severely misconfigured application previously installed
+
 ###2018.10.19
 - Fix Broken Pipe
 
