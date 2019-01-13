@@ -1,6 +1,6 @@
 Menu="Utilities"
 Title="Cleanup Appdata"
-Icon="ca.cleanup.appdata.png"
+Icon="paint-brush"
 ---
 <?
 require_once("/usr/local/emhttp/plugins/ca.cleanup.appdata/include/caCredits.php");
