@@ -28,6 +28,7 @@ switch ($_POST['action']) {
 #########################################
 
 case 'getOrphanAppdata':
+	libxml_use_internal_errors(true);
   $all_files = glob("/boot/config/plugins/dockerMan/templates-user/*.xml");
   if ( is_dir("/var/lib/docker/tmp") ) {
     $DockerClient = new DockerClient();
