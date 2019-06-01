@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "ca.cleanup.appdata">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2019.05.14">
-<!ENTITY md5       "feb2d32d2412393389f48eae1d69544a">
+<!ENTITY version   "2019.06.01">
+<!ENTITY md5       "71429c547f25e6597b04f50cec88821f">
 <!ENTITY launch    "Settings/CleanUpAppdata">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/ca.cleanup.appdata">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="paint-brush">
 
 <CHANGES>
+###2019.06.01
+- Fix typo, credits fix, change update notification to CA style
+
 ###2019.05.14
 - Suppress errors if xml file is corrupted
 
