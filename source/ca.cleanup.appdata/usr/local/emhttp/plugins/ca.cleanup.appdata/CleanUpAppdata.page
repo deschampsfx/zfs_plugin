@@ -13,7 +13,10 @@ var URL = "/plugins/ca.cleanup.appdata/include/exec.php";
 
 $(function() {
 	if ( typeof caPluginUpdateCheck === "function" ) {
-		caPluginUpdateCheck("ca.cleanup.appdata.plg",{name:"Cleanup Appdata"});
+		caPluginUpdateCheck("ca.cleanup.appdata.plg",{name:"Cleanup Appdata"},function(data) {
+			var result = JSON.parse(data);
+			$("#version").html(result.installedVersion);
+		});
 	}
   if ( "<?=$dockerRunning?>" == "false" ) {
     swal({
@@ -102,6 +105,7 @@ function deleteAppdata() {
 The following appdata paths have been determined (based upon your previously installed applications) to be no longer in use.  Select which ones you would like to be deleted<br><br>
 Note that this module looks at all of your previously installed docker applications to determine which appdata folders are abandoned.  If you have deleted the previously installed list (either through Community Applications or manually), then it will not display those result.  IE:  If there is not a record for the folder within the previously installed apps, then you will not be prompted to delete the folder.<br><br>
 
+<font size='5'>In case of a severely misconfigured app previously installed, the entire contents of a share MAY be offered up to delete.  It is your responsibility to confirm all of the folders being offered up to delete.  If you inadvertently delete a share which you actually do want to keep due to your own mistakes in configuring an application, the deletion is not reversable and the author of the plugin will take no responsiblility.<br></font>
 <input type='button' onclick='selectAll();' value='Select All' id='selectAll'><br><br>
 <span id='settings'></span>
 
@@ -109,5 +113,5 @@ Note that this module looks at all of your previously installed docker applicati
 
 <a style='float:right;cursor:pointer' onclick='showCredits();'>Credits</a><br><br></span>
 <center>For support for this plugin, visit here: <a href="https://forums.lime-technology.com/topic/51961-plugin-ca-cleanup-appdata/" target="_blank">HERE</a></center>
-<center>Plugin Version: <strong><?=$installedVersion?></strong></center>
+<center>Plugin Version: <strong><span id='version'></span></strong></center>
 > <center><a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7M7CBCVU732XG' target='_blank'><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a></center>
