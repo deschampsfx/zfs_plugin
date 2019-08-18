@@ -18,6 +18,9 @@ $(function() {
 			$("#version").html(result.installedVersion);
 		});
 	}
+	if ( typeof addBannerWarning === "function" ) {
+		addBannerWarning("The author takes no responsibility if you blindly accept the folders offered to delete",false,true);
+	}
   if ( "<?=$dockerRunning?>" == "false" ) {
     swal({
       title: "Docker Not Running",

@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "ca.cleanup.appdata">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2019.08.03">
-<!ENTITY md5       "0038af4ae09356b2037cb750bc42dc36">
+<!ENTITY version   "2019.08.18">
+<!ENTITY md5       "3c0f93a267e547c53cac13eb2afd48b5">
 <!ENTITY launch    "Settings/CleanUpAppdata">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/ca.cleanup.appdata">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="paint-brush">
 
 <CHANGES>
+###2019.08.18
+- Add another CYA banner warning
+
 ###2019.08.03
 - Add large warning that if you screwed up, it's your problem
 
