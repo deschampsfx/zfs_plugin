@@ -132,7 +132,7 @@ case 'getOrphanAppdata':
     echo "No orphaned appdata folders found <script>$('#selectAll').prop('disabled',true);</script>";
   } else {
     foreach ($availableVolumes as $volume) {
-      echo "<input type='checkbox' class='appdata' value='".$volume['HostDir']."' onclick='$(&quot;#deleteButton&quot;).prop(&quot;disabled&quot;,false);'>".$volume['Name'].":  <b>".$volume['HostDir']."</b><br>";
+      echo "<input type='checkbox' class='appdata' value=".htmlentities($volume['HostDir'])." onclick='$(&quot;#deleteButton&quot;).prop(&quot;disabled&quot;,false);'>".$volume['Name'].":  <b>".$volume['HostDir']."</b><br>";
     }
   }
   break;
