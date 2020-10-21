@@ -9,7 +9,7 @@ $plugin = "ca.cleanup.appdata";
 $dockerRunning = is_dir("/var/lib/docker/tmp") ? "true" : "false";
 ?>
 <script>
-var URL = "/plugins/ca.cleanup.appdata/include/exec.php";
+var caURL = "/plugins/ca.cleanup.appdata/include/exec.php";
 
 $(function() {
 	if ( typeof caPluginUpdateCheck === "function" ) {
@@ -55,7 +55,7 @@ function myAlert(description,textdescription,textimage,imagesize, outsideClick, 
 
 function loadAppdata() {
   $("#settings").html("<img src='/plugins/ca.cleanup.appdata/images/spinner2.gif' width='48px'> Finding orphaned appdata");
-  $.post(URL,{action:'getOrphanAppdata'},function(data) {
+  $.post(caURL,{action:'getOrphanAppdata'},function(data) {
     if (data) {
       $("#settings").html(data);
     }
@@ -94,7 +94,7 @@ function deleteAppdata() {
     showLoaderOnConfirm: true
   }, function() {
     swal("Deleting Folders","Depending upon the size of the folders, this may take a few minutes" + paths,"info");
-    $.post(URL,{action:'deleteAppdata',paths:paths},function(data) {
+    $.post(caURL,{action:'deleteAppdata',paths:paths},function(data) {
       if (data) {
         swal("Deleted","","success");
         loadAppdata();

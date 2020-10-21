@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "ca.cleanup.appdata">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2019.09.15">
-<!ENTITY md5       "f1e6928f656a81fb242d66ed712d5daa">
+<!ENTITY version   "2020.10.21">
+<!ENTITY md5       "11418d512815a4a0b17277994e8b7d59">
 <!ENTITY launch    "Settings/CleanUpAppdata">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/ca.cleanup.appdata">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="paint-brush">
 
 <CHANGES>
+###2020.10.21
+- Compatibility Fixes
+
 ###2019.09.15
 - Fixed: Weirdness if using an appdata folder containing special characters
 
