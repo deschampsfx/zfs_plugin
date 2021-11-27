@@ -8,7 +8,7 @@
 
 require_once("/usr/local/emhttp/plugins/ca.cleanup.appdata/include/helpers.php");
 require_once("/usr/local/emhttp/plugins/dynamix.docker.manager/include/DockerClient.php");
-require_once("/usr/local/emhttp/plugins/ca.cleanup.appdata/include/xmlHelpers.php");
+require_once("/usr/local/emhttp/plugins/community.applications/include/helpers.php");
 
 ############################################
 ############################################
@@ -17,7 +17,6 @@ require_once("/usr/local/emhttp/plugins/ca.cleanup.appdata/include/xmlHelpers.ph
 ##                                        ##
 ############################################
 ############################################
-
 
 switch ($_POST['action']) {
 
@@ -39,29 +38,23 @@ case 'getOrphanAppdata':
 
   # Get the list of appdata folders used by all of the my* templates
   $availableVolumes = array();
-  foreach ($all_files as $xmlfile) {
-		$o = XML2Array::createArray(file_get_contents("$xmlfile"));
-		reset($o);
-		$first_key = key($o);
-		$o = $o[$first_key]; # get the name of the first key (root of the xml)
-		if ( isset($o['Data']['Volume']) ) {
-			if ( $o['Data']['Volume'][0] ) {
-				$volumes = $o['Data']['Volume'];
-			} else {
-				unset($volumes);
-				$volumes[] = $o['Data']['Volume'];
+	foreach ( $all_files as $xmlfile) {
+		$o = readXmlFile($xmlfile);
+		
+		foreach ($o['Config'] as $volumeArray) {
+			if ( ! isset($volumeArray['@attributes']) ) {
+				continue;
 			}
-			foreach ( $volumes as $volumeArray ) {
-				$volumeList[0] = $volumeArray['HostDir'].":".$volumeArray['ContainerDir'];
-				if ( findAppdata($volumeList) ) {
-					$temp['Name'] = $o['Name'];
-					$temp['HostDir'] = $volumeArray['HostDir'];
-					$availableVolumes[$volumeArray['HostDir']] = $temp;
-				}
+			if ( $volumeArray['@attributes']['Type'] !== "Path" )
+				continue;
+			$volumeList[0] = $volumeArray['value'].":".$volumeArray['@attributes']['Target'];
+			if ( findAppdata($volumeList) ) {
+				$temp['Name'] = $o['Name'];
+				$temp['HostDir'] = $volumeArray['value'];
+				$availableVolumes[$volumeArray['value']] = $temp;
 			}
-		} 
-    
-  }
+		}
+	}
 
   # remove from the list the folders used by installed docker apps
   

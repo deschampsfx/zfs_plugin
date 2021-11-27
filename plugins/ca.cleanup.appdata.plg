@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "ca.cleanup.appdata">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2021.03.10">
-<!ENTITY md5       "5eceebc3311e9cb2581299e3b76b085b">
+<!ENTITY version   "2021.11.27">
+<!ENTITY md5       "d52dfcb9bb18595e398190318be0582d">
 <!ENTITY launch    "Settings/CleanUpAppdata">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/ca.cleanup.appdata">
@@ -13,6 +13,11 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="paint-brush">
 
 <CHANGES>
+###AS ALWAYS VERIFY THE FOLDERS THE PLUGIN OFFERS UP TO DELETE###
+
+###2021.11.27
+- Unraid 6.10 compatibility
+
 ###2021.03.10
 - Permission Fix
 

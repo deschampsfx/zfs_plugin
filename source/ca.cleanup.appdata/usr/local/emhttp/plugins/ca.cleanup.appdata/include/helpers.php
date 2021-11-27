@@ -19,25 +19,6 @@ function my_parse_ini_string($string, $mode=false,$scanner_mode=INI_SCANNER_NORM
   return parse_ini_string(preg_replace('/^#.*\\n/m', "", $string),$mode,$scanner_mode);
 }
 
-#################################################################
-#                                                               #
-# Helper function to determine if $haystack begins with $needle #
-#                                                               #
-#################################################################
-
-function startsWith($haystack, $needle) {
-  return $needle === "" || strripos($haystack, $needle, -strlen($haystack)) !== FALSE;
-}
-
-########################################################
-#                                                      #
-# Avoids having to write this line over and over again #
-#                                                      #
-########################################################
-
-function getPost($setting,$default) {
-  return isset($_POST[$setting]) ? urldecode(($_POST[$setting])) : $default;
-}
 
 ##############################################################
 #                                                            #
