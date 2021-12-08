@@ -40,6 +40,8 @@ case 'getOrphanAppdata':
   $availableVolumes = array();
 	foreach ( $all_files as $xmlfile) {
 		$o = readXmlFile($xmlfile);
+		if ( !$o ) continue;
+		if ( ! is_array($o['Config']) ) continue;
 		
 		foreach ($o['Config'] as $volumeArray) {
 			if ( ! isset($volumeArray['@attributes']) ) {
