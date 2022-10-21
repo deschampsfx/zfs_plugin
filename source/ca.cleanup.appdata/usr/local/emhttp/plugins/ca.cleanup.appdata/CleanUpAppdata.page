@@ -7,6 +7,17 @@ require_once("/usr/local/emhttp/plugins/ca.cleanup.appdata/include/caCredits.php
 
 $plugin = "ca.cleanup.appdata";
 $dockerRunning = is_dir("/var/lib/docker/tmp") ? "true" : "false";
+
+
+
+
+function tr($string,$ret=false) {
+	$string = str_replace('"',"&#34;",str_replace("'","&#39;",_($string)));
+	if ( $ret )
+		return $string;
+	else
+		echo $string;
+}
 ?>
 <script>
 var caURL = "/plugins/ca.cleanup.appdata/include/exec.php";
@@ -19,12 +30,12 @@ $(function() {
 		});
 	}
 	if ( typeof addBannerWarning === "function" ) {
-		addBannerWarning("The author takes no responsibility if you blindly accept the folders offered to delete",false,true);
+		addBannerWarning("<?tr("The author takes no responsibility if you blindly accept the folders offered to delete")?>",false,true);
 	}
   if ( "<?=$dockerRunning?>" == "false" ) {
     swal({
-      title: "Docker Not Running",
-      text: "Because the docker service is not currently running, this module will prompt you to delete the appdata for any/all docker applications which are installed.",
+      title: "<?tr("Docker Not Running")?>",
+      text: "<?tr("Because the docker service is not currently running, this module will prompt you to delete the appdata for any/all docker applications which are installed.")?>",
       type: "warning"
     });
   }
@@ -84,19 +95,19 @@ function deleteAppdata() {
 
   var displayPaths = paths.replace(/\*/g,", ");
   swal({
-    title: "Are You Sure?",
-    text: "Are you sure you want to delete these folders? <strong>Read this carefully as there is no recovery in the event of a mistake</strong><br><b><font color='red'>" + displayPaths+"</font></b>",
+    title: "<?tr("Are You Sure?")?>",
+    text: "<?tr("Are you sure you want to delete these folders? Read this carefully as there is no recovery in the event of a mistake")?><br><b><font color='red'>" + displayPaths+"</font></b>",
     type: "warning",
     html: true,
     closeOnConfirm: false,
     showCancelButton: true,
-    confirmButtonText: "Delete",
+    confirmButtonText: "<?tr("Delete")?>",
     showLoaderOnConfirm: true
   }, function() {
-    swal("Deleting Folders","Depending upon the size of the folders, this may take a few minutes" + paths,"info");
+    swal("<?tr("Deleting Folders")?>","<?tr("Depending upon the size of the folders, this may take a few minutes")?>" + paths,"info");
     $.post(caURL,{action:'deleteAppdata',paths:paths},function(data) {
       if (data) {
-        swal("Deleted","","success");
+        swal("<?tr("Deleted")?>","","success");
         loadAppdata();
       }
     });
@@ -105,16 +116,16 @@ function deleteAppdata() {
 }
 </script>
 <br>
-The following appdata paths have been determined (based upon your previously installed applications) to be no longer in use.  Select which ones you would like to be deleted<br><br>
-Note that this module looks at all of your previously installed docker applications to determine which appdata folders are abandoned.  If you have deleted the previously installed list (either through Community Applications or manually), then it will not display those result.  IE:  If there is not a record for the folder within the previously installed apps, then you will not be prompted to delete the folder.<br><br>
+<?tr("The following appdata paths have been determined (based upon your previously installed applications) to be no longer in use.  Select which ones you would like to be deleted")?><br><br>
+<?tr("Note that this module looks at all of your previously installed docker applications to determine which appdata folders are abandoned.  If you have deleted the previously installed list (either through Community Applications or manually), then it will not display those result.  IE:  If there is not a record for the folder within the previously installed apps, then you will not be prompted to delete the folder.")?><br><br>
 
-<font size='5'>In case of a severely misconfigured app previously installed, the entire contents of a share MAY be offered up to delete.  It is your responsibility to confirm all of the folders being offered up to delete.  If you inadvertently delete a share which you actually do want to keep due to your own mistakes in configuring an application, the deletion is not reversable and the author of the plugin will take no responsiblility.<br></font>
-<input type='button' onclick='selectAll();' value='Select All' id='selectAll'><br><br>
+<font size='5'><?tr("In case of a severely misconfigured app previously installed, the entire contents of a share MAY be offered up to delete.  It is your responsibility to confirm all of the folders being offered up to delete.  If you inadvertently delete a share which you actually do want to keep due to your own mistakes in configuring an application, the deletion is not reversable and the author of the plugin will take no responsiblility.")?><br></font>
+<input type='button' onclick='selectAll();' value='<?tr("Select All")?>' id='selectAll'><br><br>
 <span id='settings'></span>
 
-<input type='button' id='deleteButton' onclick='deleteAppdata();' value='Delete Selected' disabled><input type='button' onclick='done();' value='Done'>
+<input type='button' id='deleteButton' onclick='deleteAppdata();' value='<?tr("Delete Selected")?>' disabled><input type='button' onclick='done();' value='<?tr("Done")?>'>
 
-<a style='float:right;cursor:pointer' onclick='showCredits();'>Credits</a><br><br></span>
-<center>For support for this plugin, visit here: <a href="https://forums.lime-technology.com/topic/51961-plugin-ca-cleanup-appdata/" target="_blank">HERE</a></center>
-<center>Plugin Version: <strong><span id='version'></span></strong></center>
+<a style='float:right;cursor:pointer' onclick='showCredits();'><?tr("Credits")?></a><br><br></span>
+<center><?tr("For support for this plugin, visit here:")?> <a href="https://forums.lime-technology.com/topic/51961-plugin-ca-cleanup-appdata/" target="_blank"><?tr("HERE")?></a></center>
+<center><?tr("Plugin Version")?> <strong><span id='version'></span></strong></center>
 > <center><a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7M7CBCVU732XG' target='_blank'><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a></center>
