@@ -1,7 +1,7 @@
 <?PHP
 ###############################################################
 #                                                             #
-# Community Applications copyright 2015-2016, Andrew Zawadzki #
+# Community Applications copyright 2015-2024, Andrew Zawadzki #
 #                                                             #
 ###############################################################
 
@@ -11,14 +11,17 @@
 #                                                                                                  #
 ####################################################################################################
 
-function my_parse_ini_file($file,$mode=false,$scanner_mode=INI_SCANNER_NORMAL) {
-  return parse_ini_string(preg_replace('/^#.*\\n/m', "", @file_get_contents($file)),$mode,$scanner_mode);
+if ( ! function_exists("my_parse_ini_file") ) {
+  file_put_contents("/tmp/blah","here");
+  function my_parse_ini_file($file,$mode=false,$scanner_mode=INI_SCANNER_NORMAL) {
+    return parse_ini_string(preg_replace('/^#.*\\n/m', "", @file_get_contents($file)),$mode,$scanner_mode);
+  }
 }
-
-function my_parse_ini_string($string, $mode=false,$scanner_mode=INI_SCANNER_NORMAL) {
-  return parse_ini_string(preg_replace('/^#.*\\n/m', "", $string),$mode,$scanner_mode);
+if ( ! function_exists("my_parse_ini_string") ) {
+  function my_parse_ini_string($string, $mode=false,$scanner_mode=INI_SCANNER_NORMAL) {
+    return parse_ini_string(preg_replace('/^#.*\\n/m', "", $string),$mode,$scanner_mode);
+  }
 }
-
 
 ##############################################################
 #                                                            #

@@ -2,13 +2,13 @@
 
 ###############################################################
 #                                                             #
-# Community Applications copyright 2015-2016, Andrew Zawadzki #
+# Community Applications copyright 2015-2024, Andrew Zawadzki #
 #                                                             #
 ###############################################################
 
-require_once("/usr/local/emhttp/plugins/ca.cleanup.appdata/include/helpers.php");
 require_once("/usr/local/emhttp/plugins/dynamix.docker.manager/include/DockerClient.php");
 require_once("/usr/local/emhttp/plugins/community.applications/include/helpers.php");
+require_once("/usr/local/emhttp/plugins/ca.cleanup.appdata/include/helpers.php");
 
 ############################################
 ############################################
