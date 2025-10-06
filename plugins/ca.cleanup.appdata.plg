@@ -1,12 +1,12 @@
 <?xml version='1.0' standalone='yes'?>
 <!DOCTYPE PLUGIN [
-<!ENTITY name      "ca.cleanup.appdata">
-<!ENTITY author    "Andrew Zawadzki">
+<!ENTITY name      "zfs_plugin">
+<!ENTITY author    "des">
 <!ENTITY version   "2024.11.28">
 <!ENTITY md5       "63e4ea04563368276a75d0172d29cd5a">
-<!ENTITY launch    "Settings/CleanUpAppdata">
+<!ENTITY launch    "Settings/zfs_plugin">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
-<!ENTITY github    "Squidly271/ca.cleanup.appdata">
+<!ENTITY github    "deschampsfx/zfs_plugin">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/master/plugins/&name;.plg">
 ]>
 
